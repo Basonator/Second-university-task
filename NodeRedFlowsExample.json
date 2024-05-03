@@ -1,0 +1,496 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9e12d02c6a9441f2",
+        "type": "event-state",
+        "z": "f6f2187d.f17ca8",
+        "name": "Motion Sensor Bathroom",
+        "server": "a3e9796dc8084b3e",
+        "list": "",
+        "category": "motionSensor",
+        "device": "0cae5ffffec1457d",
+        "state": "detect",
+        "x": 190,
+        "y": 80,
+        "wires": [
+            [
+                "6bbef2e7c00ecda7",
+                "05328d95523bfcd1"
+            ]
+        ]
+    },
+    {
+        "id": "544f92d94f24ce3d",
+        "type": "control-device",
+        "z": "f6f2187d.f17ca8",
+        "name": "ventilator fan switch on",
+        "server": "a3e9796dc8084b3e",
+        "list": "{\"type\":\"single\",\"single\":\"on\",\"deviceId\":\"60b647fffe41090b\"}",
+        "category": "all",
+        "device": "60b647fffe41090b",
+        "action": "",
+        "x": 740,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bbef2e7c00ecda7",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "if human present",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "544f92d94f24ce3d"
+            ]
+        ]
+    },
+    {
+        "id": "a4c1ad2d8f4f8d4a",
+        "type": "control-device",
+        "z": "f6f2187d.f17ca8",
+        "name": "ventilator fan switch off",
+        "server": "a3e9796dc8084b3e",
+        "list": "{\"type\":\"single\",\"single\":\"off\",\"deviceId\":\"60b647fffe41090b\"}",
+        "category": "all",
+        "device": "60b647fffe41090b",
+        "action": "",
+        "x": 740,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a79765d0f6ed2b7",
+        "type": "control-device",
+        "z": "f6f2187d.f17ca8",
+        "name": "ventilator fan switch on",
+        "server": "a3e9796dc8084b3e",
+        "list": "{\"type\":\"single\",\"single\":\"on\",\"deviceId\":\"60b647fffe41090b\"}",
+        "category": "all",
+        "device": "60b647fffe41090b",
+        "action": "",
+        "x": 740,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19ef2870c721ec40",
+        "type": "control-device",
+        "z": "f6f2187d.f17ca8",
+        "name": "ventilator fan switch off",
+        "server": "a3e9796dc8084b3e",
+        "list": "{\"type\":\"single\",\"single\":\"off\",\"deviceId\":\"60b647fffe41090b\"}",
+        "category": "all",
+        "device": "60b647fffe41090b",
+        "action": "",
+        "x": 740,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4114a4fc01243b4d",
+        "type": "event-state",
+        "z": "f6f2187d.f17ca8",
+        "name": "Humidity Sensor Bathroom",
+        "server": "a3e9796dc8084b3e",
+        "list": "",
+        "category": "temperatureAndHumiditySensor",
+        "device": "30fb10fffe780247",
+        "state": "humidity",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "7f785e214c649592"
+            ]
+        ]
+    },
+    {
+        "id": "5381a1968c6b1614",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "humidity above/below 55",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "55",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "4a79765d0f6ed2b7"
+            ],
+            [
+                "19ef2870c721ec40"
+            ]
+        ]
+    },
+    {
+        "id": "6ee36bc7ebc8353a",
+        "type": "event-state",
+        "z": "f6f2187d.f17ca8",
+        "name": "Front Door open/close sensor",
+        "server": "a3e9796dc8084b3e",
+        "list": "",
+        "category": "contactSensor",
+        "device": "00124b002fa135e6",
+        "state": "detect",
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "0b0f334d12195502",
+                "18ae37987c268408"
+            ]
+        ]
+    },
+    {
+        "id": "df7de3ea0d6e15aa",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "if proper PM",
+        "property": "isAfter5PM",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "74f6041bb94a1b3a"
+            ]
+        ]
+    },
+    {
+        "id": "8ac0f52202811844",
+        "type": "control-device",
+        "z": "f6f2187d.f17ca8",
+        "name": "hallway lights switch off",
+        "server": "a3e9796dc8084b3e",
+        "list": "{\"type\":\"single\",\"single\":\"off\",\"deviceId\":\"2a4f7ac5-e41d-44b6-98c7-166706eb1e05\"}",
+        "category": "all",
+        "device": "2a4f7ac5-e41d-44b6-98c7-166706eb1e05",
+        "action": "",
+        "x": 1250,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3be5b610273826d4",
+        "type": "delay",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1040,
+        "y": 480,
+        "wires": [
+            [
+                "8ac0f52202811844"
+            ]
+        ]
+    },
+    {
+        "id": "0b0f334d12195502",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "create door opened/closed message",
+        "func": "var payloadObj = JSON.parse(msg.payload);\n\nvar detected = payloadObj.payload.detect.detected;\n\nvar doorStatus = detected ? \"Front door opened\" : \"Front door closed\";\n\nvar mqttMessage = {\n    topic: \"frontDoor\",\n    payload: doorStatus,\n    qos: 1,\n    retain: false \n};\n\n//send the MQTT message forward\nmsg.payload = mqttMessage;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 400,
+        "wires": [
+            [
+                "623f4e35a53f3858"
+            ]
+        ]
+    },
+    {
+        "id": "ea60226c5273b204",
+        "type": "event-state",
+        "z": "f6f2187d.f17ca8",
+        "name": "Garage Door open/close sensor",
+        "server": "a3e9796dc8084b3e",
+        "list": "",
+        "category": "contactSensor",
+        "device": "00124b002fac42a6",
+        "state": "detect",
+        "x": 170,
+        "y": 600,
+        "wires": [
+            [
+                "4ae716bf082180e4"
+            ]
+        ]
+    },
+    {
+        "id": "4ae716bf082180e4",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "create door opened/closed message",
+        "func": "var payloadObj = JSON.parse(msg.payload);\n\nvar detected = payloadObj.payload.detect.detected;\n\nvar doorStatus = detected ? \"Garage door opened\" : \"Garage door closed\";\n\nvar mqttMessage = {\n    topic: \"garageDoor\",\n    payload: doorStatus,\n    qos: 1,\n    retain: false \n};\n\n//send the MQTT message forward\nmsg.payload = mqttMessage;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 600,
+        "wires": [
+            [
+                "15059e23b94e7452"
+            ]
+        ]
+    },
+    {
+        "id": "18ae37987c268408",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "check hours",
+        "func": "// Get the current date and time\nvar now = new Date();\n\n// Extract the hour and minute components from the current time\nvar currentHour = now.getHours() + 2;\nvar currentMinute = now.getMinutes();\n\n// Set flow context variables based on time conditions\nflow.set(\"isAfter5PM\", currentHour > 17);\nflow.set(\"isBefore6AM\", currentHour < 6);\n\nnode.warn(flow.get(\"isAfter5PM\") + \" \" + flow.get(\"isBefore6AM\"));\n\nreturn flow;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "6e66317dd521dcbf",
+                "df7de3ea0d6e15aa"
+            ]
+        ]
+    },
+    {
+        "id": "6e66317dd521dcbf",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "if proper AM",
+        "property": "isBefore6AM",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 520,
+        "wires": [
+            [
+                "74f6041bb94a1b3a"
+            ]
+        ]
+    },
+    {
+        "id": "9e62a0fa69ea45cc",
+        "type": "event-state",
+        "z": "f6f2187d.f17ca8",
+        "name": "Wirless Button gradma",
+        "server": "a3e9796dc8084b3e",
+        "list": "",
+        "category": "button",
+        "device": "00124b0029279f9a",
+        "state": "all",
+        "x": 200,
+        "y": 740,
+        "wires": [
+            [
+                "ac95903cf036dcab"
+            ]
+        ]
+    },
+    {
+        "id": "05328d95523bfcd1",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "if human not present",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "false",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 120,
+        "wires": [
+            [
+                "a4c1ad2d8f4f8d4a"
+            ]
+        ]
+    },
+    {
+        "id": "7f785e214c649592",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "output humidity to console",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "74f6041bb94a1b3a",
+        "type": "control-device",
+        "z": "f6f2187d.f17ca8",
+        "name": "hallway lights switch on ",
+        "server": "a3e9796dc8084b3e",
+        "list": "{\"type\":\"single\",\"single\":\"on\",\"deviceId\":\"2a4f7ac5-e41d-44b6-98c7-166706eb1e05\"}",
+        "category": "all",
+        "device": "2a4f7ac5-e41d-44b6-98c7-166706eb1e05",
+        "action": "",
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "3be5b610273826d4"
+            ]
+        ]
+    },
+    {
+        "id": "e7c7b2212b04af74",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Pridi na kosilo",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Kosilo je pripravljeno.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 740,
+        "wires": [
+            [
+                "392e51adad2f4803"
+            ]
+        ]
+    },
+    {
+        "id": "ac95903cf036dcab",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "press",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 740,
+        "wires": [
+            [
+                "e7c7b2212b04af74"
+            ]
+        ]
+    },
+    {
+        "id": "a3e9796dc8084b3e",
+        "type": "api-server",
+        "name": "Token",
+        "ip": "192.168.1.226",
+        "ipaddr": "",
+        "token": "266fe71c-8f20-4360-b0c5-182a62f74334"
+    }
+]
